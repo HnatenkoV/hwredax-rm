@@ -41,8 +41,8 @@ export const getCharacterAsync = (page) => (dispatch) => {
         .then((data) => dispatch(getCharacter(data.results)))
 }
 
-export const getEpisodeAsync = () => (dispatch) => {
-    fetch("https://rickandmortyapi.com/api/episode")
+export const getEpisodeAsync = (page) => (dispatch) => {
+    fetch(`https://rickandmortyapi.com/api/episode?page=${page}`)
         .then((resp) => resp.json())
         .then((data) => dispatch(getEpisode(data.results)))
 }
