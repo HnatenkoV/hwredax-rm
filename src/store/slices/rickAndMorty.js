@@ -6,12 +6,15 @@ export const rickAndMortySlice = createSlice({
         listOfChar: [],
         listOfEpisode: [],
         selectedChar: { name: "none" },
+        currentPage: 1,
     },
     reducers: {
         getCharacter: (state, action) => {
+            console.log(state, action);
             state.listOfChar = action.payload
         },
         getEpisode: (state, action) => {
+            console.log(state, action);
             state.listOfEpisode = action.payload
         },
         selectChar: (state, action) => {
@@ -21,13 +24,19 @@ export const rickAndMortySlice = createSlice({
         clearCharacterList: (state) => {
             state.listOfChar = []
         },
+        nextPage: (state) => {
+            state.currentPage += 1;
+        },
+        prevPage: (state) => {
+            state.currentPage -= 1;
+        },
     },
 });
 
-export const { clearCharacterList, getCharacter, selectChar, getEpisode} = rickAndMortySlice.actions;
+export const { clearCharacterList, getCharacter, selectChar, getEpisode, nextPage, prevPage} = rickAndMortySlice.actions;
 
-export const getCharacterAsync = () => (dispatch) => {
-    fetch("https://rickandmortyapi.com/api/character/")
+export const getCharacterAsync = (page) => (dispatch) => {
+    fetch(`https://rickandmortyapi.com/api/character?page=${page}`)
         .then((resp) => resp.json())
         .then((data) => dispatch(getCharacter(data.results)))
 }
