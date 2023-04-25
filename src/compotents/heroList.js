@@ -26,7 +26,7 @@ const HeroList = () => {
             {heroes.map((hero, index) => (
                     <HeroCard key={`hero-${index}`} hero={hero}>{hero.name}</HeroCard>))}
                 <div className="pagination-sec">
-                    <button className="btn" onClick={prevPageHandler}>Prev</button>
+                    <button className="btn" disabled={currentPage === 1} onClick={prevPageHandler}>Prev</button>
                     <button className="btn" onClick={nextPageHandler}>Next</button>
                 </div>
             </div>

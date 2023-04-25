@@ -7,6 +7,7 @@ export const rickAndMortySlice = createSlice({
         listOfEpisode: [],
         selectedChar: { name: "none" },
         currentPage: 1,
+        maxPage: null,
     },
     reducers: {
         getCharacter: (state, action) => {

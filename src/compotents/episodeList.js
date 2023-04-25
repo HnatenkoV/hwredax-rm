@@ -17,7 +17,9 @@ const EpisodeList = () => {
 
     const nextPageHandler = () => dispatch(nextPage());
 
-    const prevPageHandler = () => dispatch(prevPage());
+    const prevPageHandler = () => {
+        dispatch(prevPage())
+    }
 
     return (
         <div className= "hero-list">
@@ -25,7 +27,7 @@ const EpisodeList = () => {
             {episode.map((episode, index) => (<EpisodeCard key={`episode-${index}`} episode={episode}>{episode.name}</EpisodeCard>))}
             </div>
             <div className="pagination-sec">
-                <button className="btn-episode" onClick={prevPageHandler}>Prev</button>
+                <button className="btn-episode" disabled={currentPage === 1} onClick={prevPageHandler}>Prev</button>
                 <button className="btn-episode" onClick={nextPageHandler}>Next</button>
             </div>
         </div>
